@@ -113,6 +113,9 @@ function normalizeFlags(config: Config, rawFlags: Object): Flags {
   }
 
   if (config.getOption('production') || process.env.NODE_ENV === 'production') {
+    // Set the env to production for npm compat.
+    // https://github.com/npm/npm/blob/30d75e738b9cb7a6a3f9b50e971adcbe63458ed3/lib/utils/lifecycle.js#L336
+    process.env['NODE_ENV'] = 'production';
     flags.production = true;
   }
 
